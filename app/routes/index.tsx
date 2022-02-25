@@ -92,5 +92,8 @@ const Shell = styled.div`
   width: 100%;
   max-width: 226px;
   height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
 `
 export default Index

@@ -1899,12 +1899,15 @@ var Shell = import_styled_components18.default.div`
   width: 100%;
   max-width: 226px;
   height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
 `;
 var routes_default = Index;
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "e02cbb52", "entry": { "module": "/build/entry.client-3TEMTW3J.js", "imports": ["/build/_shared/chunk-VMDZ5VLE.js", "/build/_shared/chunk-TOAMQMCD.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-A67KQALZ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-2PAILZ3H.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-E02CBB52.js" };
+var assets_manifest_default = { "version": "6704bd0b", "entry": { "module": "/build/entry.client-3TEMTW3J.js", "imports": ["/build/_shared/chunk-VMDZ5VLE.js", "/build/_shared/chunk-TOAMQMCD.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-A67KQALZ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-E3KHHQ6A.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-6704BD0B.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
