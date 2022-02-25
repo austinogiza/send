@@ -1,15 +1,59 @@
-import React from "react"
+import React, { FC } from "react"
 import styled from "styled-components"
 import { SendTheme } from "~/styles/ColorStyles"
+import { tableData } from "~/utils/TableData"
 import Categories from "./Categories"
 import Pagination from "./Pagination"
-
-const Filter = () => {
+interface FilterProps {
+  paginate: (number: number) => void
+  onItemSelect: (item: any) => void
+  postPerPage: number
+  totalPosts: number
+  selectedItem: string
+  first: number
+  last: number
+}
+const Filter: FC<FilterProps> = (props) => {
+  const {
+    paginate,
+    postPerPage,
+    totalPosts,
+    onItemSelect,
+    selectedItem,
+    first,
+    last,
+  } = props
+  const data = [
+    { name: "All", count: tableData.length },
+    {
+      name: "Pending",
+      count: tableData.filter((data) => data.status === "pending").length,
+    },
+    {
+      name: "Ready",
+      count: tableData.filter((data) => data.status === "ready").length,
+    },
+    {
+      name: "Booked",
+      count: tableData.filter((data) => data.status === "booked").length,
+    },
+  ]
   return (
     <Body>
       <Cover>
-        <Categories />
-        <Pagination />
+        <Categories
+          data={data}
+          onItemSelect={onItemSelect}
+          selectedItem={selectedItem}
+        />
+
+        <Pagination
+          first={first}
+          last={last}
+          paginate={paginate}
+          totalPosts={totalPosts}
+          postPerPage={postPerPage}
+        />
       </Cover>
       <FilterLine />
     </Body>

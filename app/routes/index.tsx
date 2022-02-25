@@ -1,17 +1,79 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { MetaFunction } from "remix"
 import styled from "styled-components"
 import MainContent from "~/components/MainContent"
 import Sidebar from "~/components/Sidebar"
+import { ContentProps } from "~/types/Types"
+import { tableData } from "~/utils/TableData"
+export const meta: MetaFunction = () => {
+  return {
+    title: "Send Freight",
+    description: "Shipping",
+  }
+}
 
-import { SendTheme } from "~/styles/ColorStyles"
 const Index = () => {
+  const [details, setDetails] = useState<ContentProps[]>(tableData)
+  const [currentpage, setCurrentPage] = useState<number>(1)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [postPerPage] = useState<number>(6)
+  const [selectedCategory, setSelectedCategory] = useState<string>("All")
+
+  //filtered details
+
+  const filteredData =
+    selectedCategory === "All"
+      ? details
+      : details.filter(
+          (data: any) => data.status === selectedCategory.toLowerCase()
+        )
+
+  //categories filter
+
+  const changeCategory = (category: string) => {
+    setSelectedCategory(category)
+    setCurrentPage(1)
+    setLoading(true)
+  }
+
+  //get paginated posts
+
+  const indexofLastPost = currentpage * postPerPage
+  const indexofFirstPost = indexofLastPost - postPerPage
+  const currentDetails = filteredData.slice(indexofFirstPost, indexofLastPost)
+
+  const paginate = (number: number) => {
+    setCurrentPage(number)
+    setLoading(true)
+  }
+
+  //loading
+  if (loading) {
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+  }
+
+  useEffect(() => {
+    setLoading(true)
+  }, [])
   return (
     <Body>
       <Shell>
         {" "}
         <Sidebar />
       </Shell>
-      <MainContent />
+      <MainContent
+        loading={loading}
+        onItemSelect={changeCategory}
+        selectedItem={selectedCategory}
+        paginate={paginate}
+        posts={currentDetails}
+        totalPosts={filteredData.length}
+        postPerPage={postPerPage}
+        first={indexofFirstPost}
+        last={indexofLastPost}
+      />
     </Body>
   )
 }

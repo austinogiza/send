@@ -1,22 +1,34 @@
-import React from "react"
+import React, { FC } from "react"
 import styled from "styled-components"
+import { SendTheme } from "~/styles/ColorStyles"
 import { SidebarText } from "~/styles/TextStyles"
 
-const Categories = () => {
-  const data = [
-    { name: "All", count: 30 },
-    { name: "Pending", count: 30 },
-    { name: "Ready", count: 30 },
-    { name: "Booked", count: 30 },
-  ]
+interface DataProps {
+  name: string
+  count: number
+}
+interface CatProps {
+  onItemSelect: (item: any) => void
+  items?: string
+  selectedItem: string
+  data?: DataProps[]
+}
+const Categories: FC<CatProps> = (props) => {
+  const { onItemSelect, items, selectedItem, data } = props
 
   return (
     <Body>
       <Cover>
-        <CategoryName>
-          <CategoryText></CategoryText>
-          <CategoryCount></CategoryCount>
-        </CategoryName>
+        {data &&
+          data.map((data: any, index: number) => (
+            <CategoryName key={index} onClick={() => onItemSelect(data.name)}>
+              <CategoryCover>
+                <CategoryText>{data.name}</CategoryText>
+                <CategoryCount>{data.count}</CategoryCount>
+              </CategoryCover>
+              {selectedItem === data.name && <ActivePane />}
+            </CategoryName>
+          ))}
       </Cover>
     </Body>
   )
@@ -31,12 +43,26 @@ const Cover = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+
+  .active {
+    color: ${SendTheme.blue};
+  }
 `
 const CategoryName = styled.div`
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   margin: 0 8px 0 0;
+  cursor: pointer;
 `
-const CategoryText = styled(SidebarText)``
+const CategoryCover = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+const CategoryText = styled(SidebarText)`
+  margin: 0 8px 0 0;
+  color: ${SendTheme.stroke};
+`
 const CategoryCount = styled.span`
   font-family: "Inter";
   font-size: 10px;
@@ -50,7 +76,16 @@ const CategoryCount = styled.span`
   width: 26px;
   border-radius: 8px;
   padding: 4px;
-  background: rgba(233, 236, 241, 0.6);
-  color: #737a91;
+  background: ${SendTheme.catBG};
+  color: ${SendTheme.catColor};
+`
+
+const ActivePane = styled.span`
+  height: 3px;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: ${SendTheme.blue};
+  margin: 8px 0 0 0;
 `
 export default Categories

@@ -9,4 +9,9 @@ export const SendTheme = {
   dark: "#303030",
   blue: "#0747A6",
   border: "#e4e6ea",
+  catColor: "#737a91",
+  tableStroke: "#f5f5f5",
+  catBG: "rgba(233, 236, 241, 0.6)",
+  orange: "#F7C244",
+  green: "#5CC685",
 }

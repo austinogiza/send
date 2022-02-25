@@ -7,6 +7,13 @@ export const Header1 = styled.h1`
   font-weight: 600;
   line-height: 24px;
 `
+export const Header2 = styled.h2`
+  font-family: "Inter";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.3;
+`
 export const SidebarText = styled.h3`
   font-family: "Inter";
   font-size: 14px;

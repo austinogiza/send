@@ -50,7 +50,10 @@ const BarColumn = styled.li`
   height: 40px;
   background: ${SendTheme.snowWhite};
   padding: 0 0 0 16px;
-
+  transition: 0.3s ease-in-out;
+  :hover {
+    background: ${SendTheme.white};
+  }
   svg {
     height: 24px;
     width: 24px;

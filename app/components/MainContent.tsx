@@ -1,18 +1,48 @@
-import React from "react"
+import React, { FC } from "react"
 import styled from "styled-components"
 import { SendTheme } from "~/styles/ColorStyles"
-import { paginate } from "~/utils/paginate"
+import { ContentProps } from "~/types/Types"
+
 import Filter from "./maincontent/Filter"
 import Header from "./maincontent/Header"
 import Table from "./maincontent/Table"
+interface FilterProps {
+  paginate: (number: number) => void
+  postPerPage: number
+  totalPosts: number
+  posts: ContentProps[]
+  selectedItem: string
+  onItemSelect: (item: any) => void
+  first: number
+  last: number
+  loading: boolean
+}
+const MainContent: FC<FilterProps> = (props) => {
+  const {
+    paginate,
+    postPerPage,
+    totalPosts,
+    posts,
+    onItemSelect,
+    selectedItem,
+    first,
+    last,
+    loading,
+  } = props
 
-const MainContent = () => {
-  const data = paginate("hello", 2, 5)
   return (
     <Body>
       <Header />
-      <Filter />
-      <Table />
+      <Filter
+        selectedItem={selectedItem}
+        onItemSelect={onItemSelect}
+        paginate={paginate}
+        totalPosts={totalPosts}
+        postPerPage={postPerPage}
+        first={first}
+        last={last}
+      />
+      <Table loading={loading} posts={posts} />
     </Body>
   )
 }
