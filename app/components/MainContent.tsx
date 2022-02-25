@@ -16,6 +16,7 @@ interface FilterProps {
   first: number
   last: number
   loading: boolean
+  currentNumber: number
 }
 const MainContent: FC<FilterProps> = (props) => {
   const {
@@ -28,6 +29,7 @@ const MainContent: FC<FilterProps> = (props) => {
     first,
     last,
     loading,
+    currentNumber,
   } = props
 
   return (
@@ -41,6 +43,7 @@ const MainContent: FC<FilterProps> = (props) => {
         postPerPage={postPerPage}
         first={first}
         last={last}
+        currentNumber={currentNumber}
       />
       <Table loading={loading} posts={posts} />
     </Body>

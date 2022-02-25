@@ -9,9 +9,11 @@ interface PaginationProps {
   paginate: (number: number) => void
   first: number
   last: number
+  currentNumber: number
 }
 const Pagination: FC<PaginationProps> = (props) => {
-  const { postPerPage, totalPosts, first, last, paginate } = props
+  const { postPerPage, totalPosts, first, last, paginate, currentNumber } =
+    props
   const pageNumbers = []
 
   for (let i = 1; i < Math.ceil(totalPosts / postPerPage); i++) {
@@ -26,7 +28,11 @@ const Pagination: FC<PaginationProps> = (props) => {
 
         <Counter>
           {pageNumbers.map((number) => (
-            <CountNumber onClick={() => paginate(number)} key={number}>
+            <CountNumber
+              className={`${currentNumber === number && "active"}`}
+              onClick={() => paginate(number)}
+              key={number}
+            >
               {number}
             </CountNumber>
           ))}

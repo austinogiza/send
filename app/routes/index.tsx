@@ -51,7 +51,7 @@ const Index = () => {
   if (loading) {
     setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 2500)
   }
 
   useEffect(() => {
@@ -73,6 +73,7 @@ const Index = () => {
         postPerPage={postPerPage}
         first={indexofFirstPost}
         last={indexofLastPost}
+        currentNumber={currentpage}
       />
     </Body>
   )

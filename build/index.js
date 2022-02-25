@@ -811,12 +811,13 @@ init_react();
 var import_react2 = __toESM(require("react"));
 var import_styled_components4 = __toESM(require("styled-components"));
 var Pagination = (props) => {
-  const { postPerPage, totalPosts, first, last, paginate } = props;
+  const { postPerPage, totalPosts, first, last, paginate, currentNumber } = props;
   const pageNumbers = [];
   for (let i = 1; i < Math.ceil(totalPosts / postPerPage); i++) {
     pageNumbers.push(i);
   }
   return /* @__PURE__ */ import_react2.default.createElement(Body2, null, /* @__PURE__ */ import_react2.default.createElement(Cover2, null, /* @__PURE__ */ import_react2.default.createElement(PageText, null, "Showing ", first + 1, " - ", last, " of ", totalPosts, " results"), /* @__PURE__ */ import_react2.default.createElement(Counter, null, pageNumbers.map((number) => /* @__PURE__ */ import_react2.default.createElement(CountNumber, {
+    className: `${currentNumber === number && "active"}`,
     onClick: () => paginate(number),
     key: number
   }, number)))));
@@ -863,7 +864,8 @@ var Filter = (props) => {
     onItemSelect,
     selectedItem,
     first,
-    last
+    last,
+    currentNumber
   } = props;
   const data = [
     { name: "All", count: tableData.length },
@@ -889,7 +891,8 @@ var Filter = (props) => {
     last,
     paginate,
     totalPosts,
-    postPerPage
+    postPerPage,
+    currentNumber
   })), /* @__PURE__ */ import_react3.default.createElement(FilterLine, null));
 };
 var Body3 = import_styled_components5.default.div`
@@ -1240,7 +1243,8 @@ var MainContent = (props) => {
     selectedItem,
     first,
     last,
-    loading
+    loading,
+    currentNumber
   } = props;
   return /* @__PURE__ */ import_react8.default.createElement(Body8, null, /* @__PURE__ */ import_react8.default.createElement(Header_default, null), /* @__PURE__ */ import_react8.default.createElement(Filter_default, {
     selectedItem,
@@ -1249,7 +1253,8 @@ var MainContent = (props) => {
     totalPosts,
     postPerPage,
     first,
-    last
+    last,
+    currentNumber
   }), /* @__PURE__ */ import_react8.default.createElement(Table_default, {
     loading,
     posts
@@ -1857,7 +1862,7 @@ var Index = () => {
   if (loading) {
     setTimeout(() => {
       setLoading(false);
-    }, 3e3);
+    }, 2500);
   }
   (0, import_react15.useEffect)(() => {
     setLoading(true);
@@ -1871,7 +1876,8 @@ var Index = () => {
     totalPosts: filteredData.length,
     postPerPage,
     first: indexofFirstPost,
-    last: indexofLastPost
+    last: indexofLastPost,
+    currentNumber: currentpage
   }));
 };
 var Body15 = import_styled_components18.default.div`
@@ -1893,7 +1899,7 @@ var routes_default = Index;
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 init_react();
-var assets_manifest_default = { "version": "172f450b", "entry": { "module": "/build/entry.client-3TEMTW3J.js", "imports": ["/build/_shared/chunk-VMDZ5VLE.js", "/build/_shared/chunk-TOAMQMCD.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-A67KQALZ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-L7LVILOS.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-172F450B.js" };
+var assets_manifest_default = { "version": "e02cbb52", "entry": { "module": "/build/entry.client-3TEMTW3J.js", "imports": ["/build/_shared/chunk-VMDZ5VLE.js", "/build/_shared/chunk-TOAMQMCD.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-A67KQALZ.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-2PAILZ3H.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-E02CBB52.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };

@@ -12,6 +12,7 @@ interface FilterProps {
   selectedItem: string
   first: number
   last: number
+  currentNumber: number
 }
 const Filter: FC<FilterProps> = (props) => {
   const {
@@ -22,6 +23,7 @@ const Filter: FC<FilterProps> = (props) => {
     selectedItem,
     first,
     last,
+    currentNumber,
   } = props
   const data = [
     { name: "All", count: tableData.length },
@@ -53,6 +55,7 @@ const Filter: FC<FilterProps> = (props) => {
           paginate={paginate}
           totalPosts={totalPosts}
           postPerPage={postPerPage}
+          currentNumber={currentNumber}
         />
       </Cover>
       <FilterLine />
