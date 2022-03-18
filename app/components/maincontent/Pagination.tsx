@@ -16,7 +16,7 @@ const Pagination: FC<PaginationProps> = (props) => {
     props
   const pageNumbers = []
 
-  for (let i = 1; i < Math.ceil(totalPosts / postPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
     pageNumbers.push(i)
   }
   return (
